@@ -1,30 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app :theme="appTheme">
+    <!-- SIDEBAR -->
+    <Sidebar @theme-changed="updateTheme"></Sidebar>
+
+    <!-- ROTEAMENTO -->
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import Sidebar from "./components/SideBar.vue";
+import { ref } from "vue";
 
-nav {
-  padding: 30px;
-}
+const appTheme = ref("light");
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+const updateTheme = (newTheme) => {
+  appTheme.value = newTheme;
+};
+</script>

@@ -1,14 +1,33 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
-export default createStore({
+const store = createStore({
   state: {
-  },
-  getters: {
+    currentStep: 1,
+    imageUrl: "",
+    biography: "",
   },
   mutations: {
+    setCurrentStep(state, step) {
+      state.currentStep = step;
+    },
+    setImageUrl(state, url) {
+      state.imageUrl = url;
+    },
+    setBiography(state, bio) {
+      state.biography = bio;
+    },
   },
   actions: {
+    updateCurrentStep({ commit }, step) {
+      commit("setCurrentStep", step);
+    },
+    updateImageUrl({ commit }, url) {
+      commit("setImageUrl", url);
+    },
+    updateBiography({ commit }, bio) {
+      commit("setBiography", bio);
+    },
   },
-  modules: {
-  }
-})
+});
+
+export default store;
